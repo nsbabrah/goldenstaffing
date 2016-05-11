@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request
 
 import requests
@@ -56,7 +57,7 @@ def send_mail(text,resume=None):
         auth = ("api", MAILGUN_API_KEY),
          files=files,
         data = {"from": "Golden Staffing Services <postmaster@goldenstaffing.ca>",
-               "to": ['navjotbabrah27@gmail.com'],
+               "to": ['goldenstaffingservices@gmail.com'],
                "subject": 'Golden Staffing Inquiry',
                "text": text
                })
@@ -79,4 +80,4 @@ def redirect():
 			return redirect(url_for('bc.html'))
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(host ='0.0.0.0',port=80,debug=True)
