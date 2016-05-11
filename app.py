@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
+
 import requests
+
 
 
 
@@ -17,7 +19,7 @@ def index():
 
 
 
-@app.route('/contact', methods=['POST'])
+@app.route('/contact', methods=['POST','GET'])
 def contact():
 
 	if request.method == 'POST':
@@ -29,6 +31,8 @@ def contact():
 		name = params['name']
 		email = params['email']
 		resume = request.files['resume']
+		resume.name = resume.filename
+		
 		text =  text  + make_footer(name,phone,email)
 		if resume:
 			send_mail(text,resume)
@@ -36,16 +40,23 @@ def contact():
 			send_mail(text)
 		return render_template('bc.html',message='Thank You for the Inquiry!')
 
+
+
+
 def send_mail(text,resume=None):
+	
+       
+
 		if resume:
 			files = [('attachment',resume)]
+
 		else:
 			files = []
 		return requests.post(URL,
         auth = ("api", MAILGUN_API_KEY),
          files=files,
         data = {"from": "Golden Staffing Services <postmaster@goldenstaffing.ca>",
-               "to": ['goldenstaffingservices@gmail.com'],
+               "to": ['navjotbabrah27@gmail.com'],
                "subject": 'Golden Staffing Inquiry',
                "text": text
                })
@@ -68,4 +79,4 @@ def redirect():
 			return redirect(url_for('bc.html'))
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000, debug=True)
+	app.run(debug=True)

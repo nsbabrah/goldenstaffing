@@ -22,9 +22,7 @@ app.config(function($routeProvider) {
       templateUrl : '../static/pages/contact.html'
     })
 
-    .when('/jbs', {
-      templateUrl : '../static/pages/jbs.html'
-    })
+   
 
     // route for the pf page
     .when('/pfolio', {
