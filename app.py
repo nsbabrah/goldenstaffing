@@ -8,9 +8,9 @@ import requests
 
 app = Flask(__name__)
 
-# Mailgun Base URL
-URL = 'https://api.mailgun.net/v3/goldenstaffing.ca/messages'
-MAILGUN_API_KEY = 'key-a6678793f067234695575a791ddffb75'
+# Mailgun Base URL navjot babrah
+URL = 'your mailgun url'
+MAILGUN_API_KEY = 'your mailgun apikey'
 
 
 @app.route('/')
